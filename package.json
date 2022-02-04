@@ -1,0 +1,26 @@
+{
+  "name": "crud-app-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "db:create": "createdb mv_todo_app",
+    "db:destroy": "dropdb likeypixdb",
+    "db:init": "psql -f commands.sql mv_todo_app",
+    "db:seed": "psql -f seed.sql likeypixdb",
+    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init && npm run db:seed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "pg-promise": "^10.11.1"
+  }
+}
