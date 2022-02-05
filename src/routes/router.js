@@ -29,6 +29,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+//submit task form
 router.post("/", async (req, res) => {
   console.log(req.body.task);
   try {
@@ -41,9 +42,31 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/delete", async (req, res) => {
-  console.log(req.body.id);
+  console.log(req.body.id); // 1
   try {
-    let queryString = `DELETE FROM tasks (id,task, completed) WHERE id = ($1)`;
+    let queryString = `DELETE FROM tasks WHERE id = $1`;
+    await database.none(queryString, [req.body.id]);
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/update", async (req, res) => {
+  console.log(req.body.id); // 1
+  try {
+    let queryString = `UPDATE tasks SET completed = 'true' WHERE id = $1`;
+    await database.none(queryString, [req.body.id]);
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/return", async (req, res) => {
+  console.log(req.body); // 1
+  try {
+    let queryString = `UPDATE tasks SET completed = 'false' WHERE id = $1`;
     await database.none(queryString, [req.body.id]);
     res.redirect("/");
   } catch (error) {

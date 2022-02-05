@@ -30,18 +30,23 @@
             <input
               type="checkbox"
               class="deleteCheckbox"
-              name="<%= task.id %>"
-              value="submit"
+              name="id"
+              value="<%= task.id %>"
               onchange="this.form.submit();"
             />
           </form>
           <span class="task"><%=task.task%></span>
-          <form action="http://localhost:3000/update">
+          <form
+            id="updateCheckbox"
+            action="http://localhost:3000/update"
+            method="POST"
+          >
             <input
               type="checkbox"
               class="updateCheckbox"
-              name="<%= task.id %>"
+              name="id"
               value="<%= task.id %>"
+              onchange="this.form.submit();"
             />
           </form>
         </div>
@@ -49,6 +54,37 @@
       </div>
       <div class="completed">
         <h4>Completed tasks</h4>
+        <% completedTasks.forEach(task => { %>
+        <div>
+          <form
+            id="deleteCheckbox"
+            action="http://localhost:3000/delete"
+            method="POST"
+          >
+            <input
+              type="checkbox"
+              class="deleteCheckbox"
+              name="id"
+              value="<%= task.id %>"
+              onchange="this.form.submit();"
+            />
+          </form>
+          <span class="task"><%=task.task%></span>
+          <form
+            id="returnCheckbox"
+            action="http://localhost:3000/return"
+            method="POST"
+          >
+            <input
+              type="checkbox"
+              class="updateCheckbox"
+              name="id"
+              value="<%= task.id %>"
+              onchange="this.form.submit();"
+            />
+          </form>
+        </div>
+        <% }) %>
       </div>
     </main>
     <script src="/js/home.js"></script>

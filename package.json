@@ -6,10 +6,10 @@
   "scripts": {
     "start": "nodemon index.js",
     "db:create": "createdb mv_todo_app",
-    "db:destroy": "dropdb likeypixdb",
+    "db:destroy": "dropdb mv_todo_app",
     "db:init": "psql -f commands.sql mv_todo_app",
     "db:seed": "psql -f seed.sql likeypixdb",
-    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init && npm run db:seed",
+    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
